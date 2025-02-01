@@ -1,24 +1,49 @@
-import { Navbar } from '@/components/navbar'
-import { Button } from '@/components/ui/button'
-import { Code2, Users, LineChart, Brain } from 'lucide-react'
-import Link from 'next/link'
+"use client"; // This tells Next.js to treat this file as a client component
+
+import { useEffect } from 'react';
+import { Navbar } from '@/components/navbar';
+import { Button } from '@/components/ui/button';
+import { Code2, Users } from 'lucide-react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+// Define a simple fade-in variant for our scroll animations
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.8 }
+  },
+};
 
 export default function Home() {
+  // When the component mounts, scroll to the top.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      
+
       {/* Hero Section */}
-      <section className="flex-1 flex flex-col items-center justify-center space-y-10 px-4 pt-24 pb-16 text-center bg-gradient-to-b from-background to-background/80">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+        className="flex-1 flex flex-col items-center justify-center space-y-10 px-4 pt-24 pb-16 text-center bg-gradient-to-b from-background to-background/80"
+      >
         <div className="max-w-3xl space-y-4">
-          <div className="text-gradient text-4xl sm:text-5xl md:text-6xl font-bold">
+          <h1 className="text-gradient text-4xl sm:text-5xl md:text-6xl font-bold">
             Collaborative Coding with AI Intelligence
-          </div>
+          </h1>
           <p className="text-xl text-muted-foreground">
             Write better code together with real-time collaboration, AI-powered suggestions, and deep analytics insights.
           </p>
         </div>
-        
+
         <div className="flex flex-wrap justify-center gap-4">
           <Link href="/signup">
             <Button size="lg" className="text-lg">
@@ -33,45 +58,91 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Features Section */}
-      <section className="container py-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="p-6 rounded-lg border bg-card">
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-            <Users className="h-6 w-6 text-primary" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Real-time Collaboration</h3>
-          <p className="text-muted-foreground">
-            Code together in real-time with your team. Share, edit, and review code simultaneously.
-          </p>
+      {/* Code Editor Demo */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+        className="container py-20 text-center"
+      >
+        <h2 className="text-3xl font-bold mb-6">Try It Yourself</h2>
+        <p className="text-lg text-muted-foreground mb-8">
+          Experience real-time collaboration and AI assistance in action.
+        </p>
+        <div className="w-full max-w-2xl mx-auto bg-card p-4 rounded-lg border">
+          <iframe
+            src="https://codesandbox.io/embed/new?codemirror=1"
+            className="w-full h-96 rounded-lg border"
+            title="Live Code Editor"
+            sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+          ></iframe>
         </div>
-        
-        <div className="p-6 rounded-lg border bg-card">
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-            <Brain className="h-6 w-6 text-primary" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">AI Assistance</h3>
-          <p className="text-muted-foreground">
-            Get intelligent code suggestions, automated code reviews, and smart completions.
-          </p>
+      </motion.section>
+      
+      {/* Video Section */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+        className="container py-20 text-center"
+      >
+        <h2 className="text-3xl font-bold mb-6">See It in Action</h2>
+        <p className="text-lg text-muted-foreground mb-8">
+          Watch how CodeCollab AI enhances your coding experience.
+        </p>
+        <div className="flex justify-center">
+          <video className="rounded-lg border shadow-lg w-full max-w-2xl" controls>
+            <source src="/demo-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
-        
-        <div className="p-6 rounded-lg border bg-card">
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-            <LineChart className="h-6 w-6 text-primary" />
+      </motion.section>
+
+      {/* Testimonials Section */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+        className="container py-20 text-center"
+      >
+        <h2 className="text-3xl font-bold mb-8">What Our Users Say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="p-6 rounded-lg border bg-card">
+            <p className="text-lg italic">
+              "This platform has revolutionized how our team codes together!"
+            </p>
+            <h4 className="font-semibold mt-4">- Alex Doe</h4>
           </div>
-          <h3 className="text-xl font-semibold mb-2">Analytics</h3>
-          <p className="text-muted-foreground">
-            Track performance, measure productivity, and gain insights into your coding patterns.
-          </p>
+          <div className="p-6 rounded-lg border bg-card">
+            <p className="text-lg italic">
+              "The AI suggestions are incredibly helpful and save us tons of time."
+            </p>
+            <h4 className="font-semibold mt-4">- Jamie Lee</h4>
+          </div>
+          <div className="p-6 rounded-lg border bg-card">
+            <p className="text-lg italic">
+              "Real-time collaboration is seamless. Love it!"
+            </p>
+            <h4 className="font-semibold mt-4">- Chris Brown</h4>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="border-t py-6 text-center text-sm text-muted-foreground">
-        <p>© 2025 CodeCollab AI. All rights reserved.</p>
-      </footer>
+      <motion.footer
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+        className="py-6 text-center text-muted-foreground"
+      >
+        © 2025 CodeCollab AI. All rights reserved.
+      </motion.footer>
     </div>
-  )
+  );
 }
