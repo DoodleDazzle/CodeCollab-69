@@ -1,24 +1,23 @@
-"use client"; // This tells Next.js to treat this file as a client component
+"use client";
 
-import { useEffect } from 'react';
-import { Navbar } from '@/components/navbar';
-import { Button } from '@/components/ui/button';
-import { Code2, Users } from 'lucide-react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useEffect } from "react";
+import { Navbar } from "@/components/navbar";
+import { Button } from "@/components/ui/button";
+import { Code2, Users } from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-// Define a simple fade-in variant for our scroll animations
+// Define a simple fade-in variant for animations
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.8 }
+    transition: { duration: 0.8 },
   },
 };
 
 export default function Home() {
-  // When the component mounts, scroll to the top.
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -33,28 +32,26 @@ export default function Home() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeInUp}
-        className="flex-1 flex flex-col items-center justify-center space-y-10 px-4 pt-24 pb-16 text-center bg-gradient-to-b from-background to-background/80"
+        className="flex-1 flex flex-col items-center justify-center space-y-10 px-4 pt-24 pb-16 text-center relative"
       >
         <div className="max-w-3xl space-y-4">
-          <h1 className="text-gradient text-4xl sm:text-5xl md:text-6xl font-bold">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold drop-shadow-md">
             Collaborative Coding with AI Intelligence
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground drop-shadow-md">
             Write better code together with real-time collaboration, AI-powered suggestions, and deep analytics insights.
           </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/signup">
-            <Button size="lg" className="text-lg">
-              <Code2 className="mr-2 h-5 w-5" />
-              Start Coding
+          <Link href="/signup" passHref>
+            <Button className="bg-[#FF073A] text-white hover:bg-[#D00630] h-11 rounded-full px-8 text-lg flex items-center">
+              <Code2 className="mr-2 h-5 w-5" /> Start Coding
             </Button>
           </Link>
-          <Link href="/join">
-            <Button size="lg" variant="outline" className="text-lg">
-              <Users className="mr-2 h-5 w-5" />
-              Join Session
+          <Link href="/join" passHref>
+            <Button size="lg" variant="outline" className="text-lg rounded-full">
+              <Users className="mr-2 h-5 w-5" /> Join Session
             </Button>
           </Link>
         </div>
@@ -81,7 +78,7 @@ export default function Home() {
           ></iframe>
         </div>
       </motion.section>
-      
+
       {/* Video Section */}
       <motion.section
         initial="hidden"

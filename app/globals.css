@@ -56,6 +56,7 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth; /* Enable smooth scrolling */
   }
 }
 
@@ -67,14 +68,14 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background: transparent;
   pointer-events: none;
   z-index: 111;
-  border: 1px solid #fff;
-  transition: all 0.2s ease-out;
-  animation: moveCursor1 0.5s infinite alternate;
+  border: 2px solid #fff;
+  transition: all 0.15s ease-out; /* Smooth transition */
+  animation: moveCursor1 0.8s ease-out infinite alternate; /* Slower animation */
 }
 
 .expand {
@@ -122,7 +123,7 @@
   font-size: 3rem; /* Adjust based on design */
   font-weight: bold;
   text-align: center;
-  background: linear-gradient(270deg, #293eff,rgba(144, 255, 144, 0.853),rgb(253, 89, 116),#2df4ff);
+  background: linear-gradient(270deg, #293eff, rgba(144, 255, 144, 0.853), rgb(253, 89, 116), #2df4ff);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -133,4 +134,58 @@
 /* Light Theme Gradient (optional) */
 body.light-theme .text-gradient {
   background: linear-gradient(270deg, #ff5f6d, #ffcc33, #4285f4);
+}
+
+/* Smooth Page Transition (e.g., Fade-in) */
+html {
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Prevent Layout Shifts */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Preload Key Assets */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.woff2') format('woff2');
+  font-display: swap; /* Avoids layout shifts by swapping with fallback font */
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono.woff2') format('woff2');
+  font-display: swap; /* Avoids layout shifts */
+}
+
+/* Skeleton Loader (For loading states) */
+.skeleton-loader {
+  width: 100%;
+  height: 200px;
+  background-color: #e0e0e0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f2f2f2;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+/* Add smooth animation for button hover states */
+.button {
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }

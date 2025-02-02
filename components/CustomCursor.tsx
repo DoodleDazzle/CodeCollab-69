@@ -15,7 +15,7 @@ const CustomCursor = () => {
             cursor.classList.add('expand');
             setTimeout(() => {
                 cursor.classList.remove('expand');
-            }, 500);
+            }, 800);
         };
 
         document.addEventListener('mousemove', handleMouseMove);

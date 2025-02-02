@@ -12,5 +12,5 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(`${requestUrl.origin}/editor`);
+  return NextResponse.redirect(`${requestUrl.origin}/app/editor`);
 }
